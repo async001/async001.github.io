@@ -1,42 +1,93 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>My first styled page</title>
-  <link rel="stylesheet" href="mystyle.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英文谐音梗大考察</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+  }
+
+  h1 {
+    color: #008080;
+    margin-bottom: 20px;
+  }
+
+  #puzzle-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 500px;
+  }
+
+  #result {
+    margin-top: 20px;
+  }
+
+  #result p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  #submit-btn {
+    background-color: #008080;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  #submit-btn:hover {
+    background-color: #005353;
+  }
+</style>
 </head>
-
 <body>
+<div id="puzzle-box">
+  <h1>欢迎来到这次的英文谐音梗大考察 (๑•̀ㅂ•́)و✧</h1>
+  <p>请回答以下问题~ ╰(*°▽°*)╯</p>
+  <div id="result"></div>
+  <button id="submit-btn">提交</button>
+</div>
 
-<!-- Site navigation menu -->
-<ul class="navbar">
-  <li>Home page
-  <li>Musings
-  <li>My town
-  <li>Links
-</ul>
+<script>
+  const questions = [
+    { question: "What do you call a deer with no eye?", answer: "No eye deer (No idea)." },
+    { question: "What did a late tomato say to other tomatoes?", answer: "I will ketchup (catch up)." },
+    { question: "I only know 25 letters of the alphabet. why?", answer: "I don't know Y (why)" },
+    { question: "What do you call a bee from America?", answer: "A USB (US bee)." },
+    { question: "How do we count cows?", answer: "With a Cowculator (calculator)." },
+    { question: "Which is faster, hot or cold?", answer: "Hot. Because you can catch a cold." },
+    { question: "Why is “dark” is spelled with a “k” not a “c”?", answer: "Because you can’t c (see) in the dark." },
+    { question: "Why shouldn’t we give Elsa a balloon?", answer: "Because she will Let It Go." },
+    { question: "What did my dog say when I asked him the answer for two minus two?", answer: "He said nothing." },
+    { question: "Who is closer to you, your mom or your dad?", answer: "Mom is close, because dad is farther." }
+  ];
 
-<!-- Main content -->
-<h1 style="border-style: solid;
-border-width: 7px;
-border-color: green;
-padding: 20px;
-text-align: center;
-background-color: cadetblue;
-color: black\;
-">My first styled page</h1>
+  const resultDiv = document.getElementById('result');
+  const submitBtn = document.getElementById('submit-btn');
 
-<p>Welcome to my styled page!
-
-<p>It lacks images, but at least it has style.
-And it has links, even if they don't go
-anywhere&hellip;
-
-<p>There should be more here, but I don't know
-what yet.
-
-<!-- Sign and date the page, it's only polite! -->
-<address align="right">Made 5 April 2004<br>
-  by myself.</address>
-
+  submitBtn.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    const randomQuestion = questions[randomIndex].question;
+    const answer = questions[randomIndex].answer;
+    const userAnswer = prompt(randomQuestion);
+    if (userAnswer && userAnswer.toLowerCase() === answer.toLowerCase()) {
+      resultDiv.innerHTML = `<p>真聪明！你一定是英文meme高手！（又或者你是看完答案后重新进行作答的时间旅行者！）</p>`;
+    } else {
+      resultDiv.innerHTML = `<p>答错了！正确答案是：${answer}</p>`;
+    }
+  });
+</script>
 </body>
 </html>
+
